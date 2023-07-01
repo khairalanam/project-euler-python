@@ -19,7 +19,7 @@ def largest_palindromic_product():
 
         # loop from i to 100 rather than 999 to 100. Prevents from unnecessary
         # checking of the older products
-        
+
         for j in range(i, 99, -1):
             if is_palindrome(( res := i * j )):
                 max_prod = max(max_prod, res)
