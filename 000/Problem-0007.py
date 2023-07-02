@@ -7,7 +7,14 @@ Problem: What is the 10001st prime number?
 
 from math import sqrt
 
-def is_prime(n: int):
+def is_prime(n: int) -> bool:
+    """
+    function: Check whether n is prime
+    params: n: int
+    returns: bool
+    """
+
+    # prime checking for number 1 - 10 and numbers and divisible by 2 and 3
     if n == 1:
         return False
     if n < 4:
@@ -19,6 +26,7 @@ def is_prime(n: int):
     if n % 3 == 0:
         return False
 
+    # Every prime number > 3 can be written as 6k - 1 or 6k + 1
     n_sqrt = int(sqrt(n))
     f = 5
 
@@ -29,7 +37,12 @@ def is_prime(n: int):
 
     return True
 
-def prime_check(n: int):
+def prime_find(n: int) -> int:
+    """
+    function: Find the nth prime number
+    params: n: int
+    returns: int
+    """
     count = result = 1
 
     while count != n:
@@ -39,4 +52,4 @@ def prime_check(n: int):
 
     return result
 
-print(prime_check(10001))
+print(prime_find(10001))
