@@ -43,11 +43,15 @@ def find_13_digits(n):
     size: number of digits in n
     res: product of the current iteration
     max_res: maximum product obtained till current iteration
-    start: starting idnex of the 13-digit sliding window
+    start: starting index of the 13-digit sliding window
     curr_length: current length of the sliding window
     """
 
     for i in range(size):
+        # if there are maximum number of 13 digits in the sliding window
+        # Decrement the curr_length by 1
+        # Divide the res by the start digit of the sliding window
+        # increment start by 1
         if curr_length == 13:
             curr_length -= 1
             res //= int(n[start])
@@ -55,10 +59,14 @@ def find_13_digits(n):
 
         curr_length += 1
         res *= int(n[i])
+
+        # if the current result = 0, then that implies n[i] = 0
+        # Hence we set start to be the next index, i.e, i + 1 and reset other values
         if res == 0:
             res = 1
             curr_length = 0
             start = i + 1
+
         max_res = max(max_res, res)
 
     return max_res
