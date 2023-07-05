@@ -5,7 +5,6 @@ The sum of the primes below 10 is
 Problem: Find the sum of all the primes below two million
 """
 
-
 from math import sqrt
 
 
@@ -27,6 +26,8 @@ def is_prime(n: int) -> bool:
         return True
     if n % 3 == 0:
         return False
+    if n % 5 == 0 or n % 7 == 0:
+        return False
 
     # Every prime number > 3 can be written as 6k - 1 or 6k + 1
     n_sqrt = int(sqrt(n))
@@ -38,3 +39,16 @@ def is_prime(n: int) -> bool:
         f += 6
 
     return True
+
+
+def find_sum_primes(n: int) -> int:
+    res = 0
+
+    for i in range(1, n):
+        if is_prime(i):
+            res += i
+
+    return res
+
+
+print(find_sum_primes(2000000))
