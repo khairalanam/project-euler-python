@@ -112,6 +112,12 @@ def find_horizontal_product(grid: list[list[int]]) -> int:
 
 
 def find_largest_product(grid: list[list[int]]):
+    """
+    function: TO find the largest product in the grid
+    params: grid of type list which contains lists of integers
+    returns: maximum product of type int
+    """
+
     product_vertical = find_vertical_product(grid)
     product_horizontal = find_horizontal_product(grid)
     product_diagonal = find_diagonal_product(grid)
@@ -147,4 +153,5 @@ grid = [
     [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
     [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ]
+
 print(find_largest_product(grid))
