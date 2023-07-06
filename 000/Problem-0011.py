@@ -30,20 +30,44 @@ in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
 from functools import reduce
 
 
+"""
+Logic: There are five steps to the problem:
+1. Find the maximum horizontal product in the grid.
+2. Find the maximum vertical product in the grid.
+3. Find the maximum diagonal (down-right) product in the grid.
+4. Find the maximum diagonal (down-left) product in the grid.
+5. Find the maximum of the above four product to get the maximum product in the grid.
+"""
+
+
 def calculate_product(nums: list[int]) -> int:
+    """
+    function: Find the product of a given list of numbers
+    params: nums of type list of integers
+    returns: product of nums of type int
+    """
     return reduce(lambda x, y: x * y, nums)
 
 
 def find_diagonal_product(grid: list[list[int]]) -> int:
+    """
+    function: Find the diagonal product (down-right and down-left) of a given list of numbers
+    params: grid of type lsit which contains lists of integers
+    returns: diagonal product of type integer
+    """
     max_product = 0
 
+    # for down-right diagonal product
     for i in range(len(grid)-3):
         for j in range(len(grid[i])-3):
+            # list comprehension is used to get the down-right diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
                 [grid[i + k][j + k] for k in range(4)]))
 
+    # for down-left diagonal product
     for i in range(len(grid)-3):
         for j in range(3, len(grid[i])):
+            # list comprehension is used to get the down-left diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
                 [grid[i + k][j - k] for k in range(4)]))
 
