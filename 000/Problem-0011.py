@@ -75,8 +75,14 @@ def find_diagonal_product(grid: list[list[int]]) -> int:
 
 
 def find_vertical_product(grid: list[list[int]]) -> int:
+    """
+    function: find the maximum vertical product in the grid
+    params: grid of type lsit which contains lists of integers
+    returns: maximum vertical product of type int
+    """
     max_product = 0
 
+    # for the vertical product
     for i in range(len(grid)-3):
         for j in range(len(grid[i])):
             max_product = max(max_product, calculate_product(
