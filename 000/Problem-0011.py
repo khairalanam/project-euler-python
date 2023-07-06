@@ -67,7 +67,7 @@ def find_diagonal_product(grid: tuple[tuple[int]]) -> int:
         for j in range(cols - 3):
             # list comprehension is used to get the down-right diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
-                [grid[i + k][j + k] for k in range(4)]))
+                (grid[i + k][j + k] for k in range(4))))
 
     # for down-left diagonal product
     for i in range(rows - 3):
@@ -75,7 +75,7 @@ def find_diagonal_product(grid: tuple[tuple[int]]) -> int:
         for j in range(3, cols):
             # list comprehension is used to get the down-left diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
-                [grid[i + k][j - k] for k in range(4)]))
+                (grid[i + k][j - k] for k in range(4))))
 
     return max_product
 
@@ -95,7 +95,7 @@ def find_vertical_product(grid: tuple[tuple[int]]) -> int:
         cols = len(grid[i])
         for j in range(cols):
             max_product = max(max_product, calculate_product(
-                [grid[i + k][j] for k in range(4)]))
+                (grid[i + k][j] for k in range(4))))
 
     return max_product
 
