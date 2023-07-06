@@ -27,19 +27,47 @@ The product of these numbers is 26 x 63 x 78 x 14 = 1788696
 Problem: What is the greatest product of four adjacent numbers
 in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
 """
-import numpy as np
+from functools import reduce
 
 
-def find_diagonal_product(grid: list[list[int]]):
-    pass
+def calculate_product(nums: list[int]) -> int:
+    return reduce(lambda x, y: x * y, nums)
 
 
-def find_vertical_product(grid: list[list[int]]):
-    pass
+def find_diagonal_product(grid: list[list[int]]) -> int:
+    max_product = 0
+
+    for i in range(len(grid)-3):
+        for j in range(len(grid[i])-3):
+            max_product = max(max_product, calculate_product(
+                [grid[i + k][j + k] for k in range(4)]))
+
+    for i in range(len(grid)-3):
+        for j in range(3, len(grid[i])):
+            max_product = max(max_product, calculate_product(
+                [grid[i + k][j - k] for k in range(4)]))
+
+    return max_product
 
 
-def find_horizontal_product(grid: list[list[int]]):
-    pass
+def find_vertical_product(grid: list[list[int]]) -> int:
+    max_product = 0
+
+    for i in range(len(grid)-3):
+        for j in range(len(grid[i])):
+            max_product = max(max_product, calculate_product(
+                [grid[i + k][j] for k in range(4)]))
+
+    return max_product
+
+
+def find_horizontal_product(grid: list[list[int]]) -> int:
+    max_product = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])-3):
+            max_product = max(max_product, calculate_product(grid[i][j: j+4]))
+
+    return max_product
 
 
 def find_largest_product(grid: list[list[int]]):
