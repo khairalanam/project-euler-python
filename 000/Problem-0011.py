@@ -41,20 +41,20 @@ Logic: There are five steps to the problem:
 
 
 from functools import reduce
-def calculate_product(nums: list[int]) -> int:
+def calculate_product(nums: tuple[int]) -> int:
     """
     function: Find the product of a given list of numbers
-    params: nums of type list of integers
+    params: nums of type tuple of integers
     returns: product of nums of type int
     """
 
     return reduce(lambda x, y: x * y, nums)
 
 
-def find_diagonal_product(grid: list[list[int]]) -> int:
+def find_diagonal_product(grid: tuple[tuple[int]]) -> int:
     """
     function: Find the diagonal product (down-right and down-left) of a given list of numbers
-    params: grid of type lsit which contains lists of integers
+    params: grid of type tuple which contains tuples of integers
     returns: diagonal product of type integer
     """
 
@@ -80,10 +80,10 @@ def find_diagonal_product(grid: list[list[int]]) -> int:
     return max_product
 
 
-def find_vertical_product(grid: list[list[int]]) -> int:
+def find_vertical_product(grid: tuple[tuple[int]]) -> int:
     """
     function: find the maximum vertical product in the grid
-    params: grid of type list which contains lists of integers
+    params: grid of type tuple which contains tuples of integers
     returns: maximum vertical product of type int
     """
 
@@ -100,10 +100,10 @@ def find_vertical_product(grid: list[list[int]]) -> int:
     return max_product
 
 
-def find_horizontal_product(grid: list[list[int]]) -> int:
+def find_horizontal_product(grid: tuple[tuple[int]]) -> int:
     """
     function: find the maximum horizontal product in the grid
-    params: grid of type list which contains lists of integers
+    params: grid of type tuple which contains tuples of integers
     returns: maximum horizontal product of type int
     """
 
@@ -120,10 +120,10 @@ def find_horizontal_product(grid: list[list[int]]) -> int:
     return max_product
 
 
-def find_largest_product(grid: list[list[int]]):
+def find_largest_product(grid: tuple[tuple[int]]):
     """
     function: TO find the largest product in the grid
-    params: grid of type list which contains lists of integers
+    params: grid of type tuple which contains tuples of integers
     returns: maximum product of type int
     """
 
