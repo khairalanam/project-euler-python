@@ -27,8 +27,6 @@ The product of these numbers is 26 x 63 x 78 x 14 = 1788696
 Problem: What is the greatest product of four adjacent numbers
 in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
 """
-from functools import reduce
-
 
 """
 Logic: There are five steps to the problem:
@@ -40,6 +38,9 @@ Logic: There are five steps to the problem:
 """
 
 
+
+
+from functools import reduce
 def calculate_product(nums: list[int]) -> int:
     """
     function: Find the product of a given list of numbers
@@ -58,17 +59,20 @@ def find_diagonal_product(grid: list[list[int]]) -> int:
     """
 
     max_product = 0
+    rows = len(grid)
 
     # for down-right diagonal product
-    for i in range(len(grid)-3):
-        for j in range(len(grid[i])-3):
+    for i in range(rows - 3):
+        cols = len(grid[i])
+        for j in range(cols - 3):
             # list comprehension is used to get the down-right diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
                 [grid[i + k][j + k] for k in range(4)]))
 
     # for down-left diagonal product
-    for i in range(len(grid)-3):
-        for j in range(3, len(grid[i])):
+    for i in range(rows - 3):
+        cols = len(grid[i])
+        for j in range(3, cols):
             # list comprehension is used to get the down-left diagonal elements with a for loop
             max_product = max(max_product, calculate_product(
                 [grid[i + k][j - k] for k in range(4)]))
@@ -84,10 +88,12 @@ def find_vertical_product(grid: list[list[int]]) -> int:
     """
 
     max_product = 0
+    rows = len(grid)
 
     # for the vertical product
-    for i in range(len(grid)-3):
-        for j in range(len(grid[i])):
+    for i in range(rows - 3):
+        cols = len(grid[i])
+        for j in range(cols):
             max_product = max(max_product, calculate_product(
                 [grid[i + k][j] for k in range(4)]))
 
@@ -102,11 +108,14 @@ def find_horizontal_product(grid: list[list[int]]) -> int:
     """
 
     max_product = 0
+    rows = len(grid)
 
     # for the horizontal product
-    for i in range(len(grid)):
-        for j in range(len(grid[i])-3):
-            max_product = max(max_product, calculate_product(grid[i][j: j+4]))
+    for i in range(rows):
+        cols = len(grid[i])
+        for j in range(cols - 3):
+            max_product = max(
+                max_product, calculate_product(grid[i][j: j + 4]))
 
     return max_product
 
