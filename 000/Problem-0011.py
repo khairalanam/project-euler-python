@@ -46,6 +46,7 @@ def calculate_product(nums: list[int]) -> int:
     params: nums of type list of integers
     returns: product of nums of type int
     """
+
     return reduce(lambda x, y: x * y, nums)
 
 
@@ -55,6 +56,7 @@ def find_diagonal_product(grid: list[list[int]]) -> int:
     params: grid of type lsit which contains lists of integers
     returns: diagonal product of type integer
     """
+
     max_product = 0
 
     # for down-right diagonal product
@@ -77,9 +79,10 @@ def find_diagonal_product(grid: list[list[int]]) -> int:
 def find_vertical_product(grid: list[list[int]]) -> int:
     """
     function: find the maximum vertical product in the grid
-    params: grid of type lsit which contains lists of integers
+    params: grid of type list which contains lists of integers
     returns: maximum vertical product of type int
     """
+
     max_product = 0
 
     # for the vertical product
@@ -92,7 +95,15 @@ def find_vertical_product(grid: list[list[int]]) -> int:
 
 
 def find_horizontal_product(grid: list[list[int]]) -> int:
+    """
+    function: find the maximum horizontal product in the grid
+    params: grid of type list which contains lists of integers
+    returns: maximum horizontal product of type int
+    """
+
     max_product = 0
+
+    # for the horizontal product
     for i in range(len(grid)):
         for j in range(len(grid[i])-3):
             max_product = max(max_product, calculate_product(grid[i][j: j+4]))
