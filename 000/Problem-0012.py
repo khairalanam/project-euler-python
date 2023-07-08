@@ -22,64 +22,45 @@ Problem: What is the value of the first triangle number to have over five hundre
 
 import time
 
+"""
+Logic: This program goes for the brute force method by following these steps:
+1. Generate the triangle number for each iteration
+2. Count the number of divisors
+3. Run the loop until the number of divisors exceed the
+   required number of divisors, i.e., 500 in this case
 
-def get_triangle_number(n):
+The optimisation is done for finding the number of divisors.
+Instead of iterating through all the numbers until the number,
+we only run the loop until the square root of the number.
+This way, we don;t have to increment the count by 1 and instead,
+increment by 2.
+
+That is, if n % i == 0, then that means i and n / i are divisors.
+"""
+
+
+def get_triangle_number(n: int) -> int:
+    """
+    function: To get the nth triangle number
+    params: number n of type int
+    returns: triangle number of type int
+    """
     return (n * (n + 1)) // 2
 
 
-def timer(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        res = func(*args, **kwargs)
-        end = time.time()
-        print(end - start)
-
-        return res
-
-    return wrapper
-
-
-def is_prime(n: int) -> bool:
+def no_of_divisors(n: int) -> int:
     """
-    function: Check whether n is prime
-    params: n: int
-    returns: bool
+    function: find the number of divisors
+    params: number n of type int
+    function: returns the number of divisors of type int
     """
-
-    # prime checking for number 1 - 10 and numbers and divisible by 2 and 3
-    if n == 1:
-        return False
-    if n < 4:
-        return True
-    if n % 2 == 0:
-        return False
-    if n < 9:
-        return True
-    if n % 3 == 0:
-        return False
-
-    # Every prime number > 3 can be written as 6k - 1 or 6k + 1
-    n_sqrt = int(n ** 0.5)
-    f = 5
-
-    while f <= n_sqrt:
-        if n % f == 0 or n % (f + 2) == 0:
-            return False
-        f += 6
-
-    return True
-
-
-def no_of_divisors_with_prime(n: int):
     if n == 1:
         return 1
-
-    if is_prime(n):
-        return 2
 
     n_sqrt = int(n ** 0.5)
     count = 2
 
+    # if n is a perfect square
     if n == n_sqrt * n_sqrt:
         count += 1
 
@@ -90,25 +71,12 @@ def no_of_divisors_with_prime(n: int):
     return count
 
 
-def no_of_divisors(n: int):
-    if n == 1:
-        return 1
-
-    n_sqrt = int(n ** 0.5)
-    count = 2
-
-    if n == n_sqrt * n_sqrt:
-        count += 1
-
-    for i in range(2, n_sqrt):
-        if n % i == 0:
-            count += 2
-
-    return count
-
-
-@timer
-def find_triangle_number(count: int):
+def find_triangle_number(count: int) -> int:
+    """
+    function:To find the triangle number that has number of divisors more than count
+    params: count of type int
+    returns: triangle number of type int
+    """
     n = curr = 1
 
     while curr <= count:
@@ -119,17 +87,4 @@ def find_triangle_number(count: int):
     return res
 
 
-@timer
-def find_triangle_number_with_prime(count: int):
-    n = curr = 1
-
-    while curr <= count:
-        res = get_triangle_number(n)
-        curr = no_of_divisors_with_prime(res)
-        n += 1
-
-    return res
-
-
 print(find_triangle_number(500))
-print(find_triangle_number_with_prime(500))
