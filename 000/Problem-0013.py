@@ -105,13 +105,17 @@ sum of the following one-hundred 50-digit numbers.
 """
 
 
-def find_50_digit_sum(n: str) -> int:
-    curr = res = 0
+def find_10_digit_sum(n: str) -> int:
+    """
+    function: To find the first ten digits of the sum of numbers
+    params: number n of type string
+    returns: first 10 digits of the sum of type int
+    """
+    res = 0
     size = len(n)
 
     for i in range(0, size, 50):
-        curr = n[i: i + 50]
-        res += int(curr)
+        res += int(n[i: i + 50])
 
     return str(res)[: 10]
 
@@ -217,4 +221,4 @@ number = "37107287533902102798797998220837590246510135740250\
 20849603980134001723930671666823555245252804609722\
 53503534226472524250874054075591789781264330331690"
 
-print(find_50_digit_sum(number))
+print(find_10_digit_sum(number))
