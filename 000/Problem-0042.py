@@ -14,12 +14,10 @@ which is a triangle number.
 If the word value is a triangle number, then we
 shall call the word a triangle word.
 
-How many words in the given text file (0042_words.txt) 
+How many words in the given text file (0042_words.txt)
 are triangle words?
 """
 import string
-
-# Function to calculate the nth triangle number
 
 
 def triangle_number(n):
